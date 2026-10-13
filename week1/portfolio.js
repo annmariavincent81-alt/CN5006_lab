@@ -1,5 +1,6 @@
 // week 1 portfolio
 
+/*
 // simple calculator 
 
 //numbers i want to calculate
@@ -19,4 +20,5 @@ console.log("addition:",sum);
 console.log("subtraction:", subtraction);
 console.log("multiplication:", multiplication);
 console.log("division:", division);
+*/
 
