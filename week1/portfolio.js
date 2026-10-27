@@ -1,7 +1,7 @@
 // week 1 portfolio
 
 /*
-// simple calculator 
+// simple calculator with the numbers already given in the code 
 
 //numbers i want to calculate
 let num1 = 5;
@@ -21,148 +21,56 @@ console.log("subtraction:", subtraction);
 console.log("multiplication:", multiplication);
 console.log("division:", division);
 */
-/**
- * Week 1 Portfolio - Sequential Arithmetic Calculator
- *
- * Performs sequential arithmetic operations.
- * Interactively asks for a number, then an operation, 
- * then a number, until the user types '='.
- *
- * Run interactively:      node arithmetic.js
- * Run with arguments:     node arithmetic.js add 10 5 2
- */
 
-const readline = require("readline/promises");
+// basic arthemetic calculator
 
-// ---------- Core arithmetic functions ----------
+//for interactive terminal input 
+const prompt = require('prompt-sync')();
 
-function add(numbers) {
-  return numbers.reduce((total, n) => total + n);
+//functions for basic operations 
+function add(a, b) {
+    return a + b;
 }
 
-function subtract(numbers) {
-  return numbers.reduce((total, n) => total - n);
+function subtract(a, b) {
+    return a - b;
 }
 
-function multiply(numbers) {
-  return numbers.reduce((total, n) => total * n);
+function multiply(a, b) {
+    return a * b;
 }
 
-function divide(numbers) {
-  return numbers.reduce((total, n) => {
-    if (n === 0) throw new Error("Cannot divide by zero.");
-    return total / n;
-  });
-}
-
-// ---------- Helpers ----------
-
-const operations = { add, subtract, multiply, divide };
-
-// This maps both symbols (+, -) and words (add, subtract) to your functions
-const opMapping = {
-  "+": "add",       "add": "add",
-  "-": "subtract",  "subtract": "subtract",
-  "*": "multiply",  "multiply": "multiply",
-  "/": "divide",    "divide": "divide"
-};
-
-/**
- * Validates array inputs for the command-line argument feature.
- */
-function parseNumbers(inputs) {
-  const numbers = inputs.filter(Boolean).map(Number);
-  if (numbers.length < 2) throw new Error("Please enter at least two valid numbers.");
-  if (numbers.some(isNaN)) throw new Error("All inputs must be valid numbers.");
-  return numbers;
-}
-
-// ---------- Program entry points ----------
-
-function runFromArguments(args) {
-  const [operation, ...inputs] = args;
-  try {
-    const op = operation.toLowerCase();
-    const opName = opMapping[op];
-    
-    if (!opName) throw new Error(`Unknown operation "${operation}".`);
-    
-    const numbers = parseNumbers(inputs);
-    const result = operations[opName](numbers);
-    console.log(`\nResult: ${result}\n`);
-  } catch (error) {
-    console.error(`\nError: ${error.message}\n`);
-  }
-}
-
-async function runInteractive() {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-
-  console.log("\n=== Sequential Calculator ===");
-  console.log("Enter a number, then an operation (+, -, *, /). Type '=' to finish.\n");
-
-  try {
-    // 1. Get the starting number
-    let firstInput = await rl.question("Enter a number: ");
-    let currentTotal = Number(firstInput.trim());
-
-    if (isNaN(currentTotal)) {
-      throw new Error("That is not a valid starting number.");
+function divide(a, b) {
+    if (b === 0) {
+        return "Error: Division by zero is not allowed";
     }
-
-    // 2. Loop to ask for operation, then next number
-    while (true) {
-      // Ask for operation
-      let opInput = await rl.question("Enter operation (+, -, *, /) or '=': ");
-      opInput = opInput.trim().toLowerCase();
-
-      // If user types '=', break the loop and show the final result
-      if (opInput === "=") {
-        break; 
-      }
-
-      // Check if it's a valid operation
-      let opName = opMapping[opInput];
-      if (!opName) {
-        console.log("  -> Invalid operation. Please try again.");
-        continue; // Restarts the loop to ask for operation again
-      }
-
-      // Ask for the next number
-      let nextInput = await rl.question("Enter next number: ");
-      let nextNum = Number(nextInput.trim());
-
-      if (isNaN(nextNum)) {
-        console.log("  -> Invalid number. Let's try that step again.");
-        continue;
-      }
-
-      // 3. Perform the math using your existing functions
-      // We pass the current total and the new number as an array
-      currentTotal = operations[opName]([currentTotal, nextNum]);
-      
-      console.log(`  (Running total: ${currentTotal})`);
-    }
-
-    // 4. Print the final result when loop finishes
-    console.log(`\n========================`);
-    console.log(`Final Result: ${currentTotal}`);
-    console.log(`========================\n`);
-
-  } catch (error) {
-    console.error(`\nError: ${error.message}\n`);
-  } finally {
-    rl.close();
-  }
+    return a / b;
 }
+//asking name to interact with thew user 
+const name = prompt("Enter your name: ");
+console.log(`Hello, ${name}! Let's perform basic arithmetic calculations.\n`);
 
-// ---------- Execution ----------
+// Getting two numbers from the user 
+//parseFloat converts the string input into decimal numbers 
+const num1 = parseFloat(prompt("Enter the first number: "));
+const num2 = parseFloat(prompt("Enter the second number: "));
 
-if (process.argv.length > 2) {
-  runFromArguments(process.argv.slice(2));
+//useing if loop to see if number 1 and 2 the user inputer is number or a charecter and if the did it prints a error message or do the mathematical operation  
+//isNAN checks if the input is a number or a character
+if (isNaN(num1) || isNaN(num2)) {
+    console.log("Error: Invalid input. Please enter numerical values.");
 } else {
-  runInteractive();
+    //calling functions to perfom calculations 
+    //parameters (a,b) is replacesed by the numbers the user input 
+    const sumResult = add(num1, num2);
+    const diffResult = subtract(num1, num2);
+    const prodResult = multiply(num1, num2);
+    const divResult = divide(num1, num2);
+
+    // Display the output
+    console.log(`Numbers entered: ${num1} and ${num2}`);
+    console.log(`Addition (${num1} + ${num2})       : ${sumResult}`);
+    console.log(`Subtraction (${num1} - ${num2})    : ${diffResult}`);
+    console.log(`Multiplication (${num1} * ${num2}) : ${prodResult}`);
+    console.log(`Division (${num1} / ${num2})       : ${divResult}`);
 }
