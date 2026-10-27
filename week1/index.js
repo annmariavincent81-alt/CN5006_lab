@@ -1,19 +1,23 @@
-/*
-console.log("This is my first program")
-console.log("Welcome John your monthly salary is 50000")
-*/
+//example 1
+console.log("example 1 ");
+console.log("This is my first program");
+console.log("Welcome John your monthly salary is 50000");
 
-/*
+console.log("_____________________________________________")
+
+
 //example2
+console.log("example 2");
 const num1 = 5;
 const num2 = 3;
 //addition 
 const sum = num1 + num2;
 //display
 console.log('The sum is ' + num1 + ' and ' + num2 + ' is ' + sum );
-*/
 
+console.log("_____________________________________________")
 //example 3 
+console.log("example 3 ");
 const prompt = require('prompt-sync')();//essential line 
 console.log("starting");
 const name = prompt('Enter your name: ');
