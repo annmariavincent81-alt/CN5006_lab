@@ -1,5 +1,7 @@
 /*
 //exercise 1
+console.log("Exercise 1"); 
+
 function EmployeeInfo(name, Salary) 
 { 
     console.log("Welcome " + name + " Your monthly Salary is " + Salary); 
@@ -12,9 +14,14 @@ var EmpName = "John";
 var EmpSalary = 50000; 
 // Calling the function
 EmployeeInfo(EmpName, EmpSalary); 
+
+console.log("__________________________________________________________"); 
 */
+
 /*
 //exercise 2
+console.log("Exercise 2"); 
+
 function EmployeeInfo(name, Salary) { 
     console.log("Welcome " + name + " Your monthly Salary is " + Salary); 
 }   
@@ -26,15 +33,19 @@ var EmpName = "John";
 var EmpSalary = 50000;   
 // Calling the function 
 EmployeeInfo(EmpName, EmpSalary); 
-// Add this for Second Exercise 
+// second exercise 
 const EmpSkills= (skills,Name,LabGrp)=> {   
     console.log(" Student ID"+ Name+ "Expert in "+ skills)   
     console.log("Lab Group Name",LabGrp) 
 } 
 EmpSkills("java","2819156 ","group-4") 
+console.log("__________________________________________________________"); 
+
 */
-/*
-//excersise 2
+
+//full exercises
+
+//ex1
 function EmployeeInfo(name, Salary) {
      console.log("Welcome " + name + " Your monthly Salary is " + Salary); 
 } 
@@ -46,14 +57,14 @@ var EmpName = "Ann";
 var EmpSalary = 50000;   
 // Calling the function 
 EmployeeInfo(EmpName, EmpSalary); 
-// Add this for Second Exercise 
+// ex2 
 const EmpSkills= (skills,Name,LabGrp)=> {   
     console.log(" Student ID: "+ Name+ "Expert in "+ skills)   
     console.log("Lab Group number",LabGrp) 
 } 
 EmpSkills("java","2819156 ","group-4") 
 
-// code for third Exercise 
+// ex3
 const student= require('./studentinfo')
 const person = require('./person') 
 // because getName is the function so we use ()  
@@ -66,18 +77,5 @@ console.log("grade is "+student.studentgrade(55) )
 person1= new person("Jim","USA","myemail@gmail.com")  
 console.log("using Person Module",person1.getPersonInfo()) 
 console.log("Programe ended");
-*/
 
-//exercise 4 
-os=require("os") 
-const util=require('util') 
-console.log("temporary directory"+ os.tmpdir() ) 
-console.log("hostname: "+ os.hostname()) 
-console.log("OS : " + os.platform() +"release:"+ os.release()) 
-console.log("Uptime"+ (os.uptime())/3600 +" hours") 
-console.log("userInfo" + util.inspect(os.userInfo())) 
-console.log("Memory "+ os.totalmem()/1000000000 + "Giga byte") 
-console.log(" free: "+os.freemem()/1000000000 + "Giga byte") 
-console.log("CPU "+ util.inspect(os.cpus())) 
-console.log("Network"+ util.inspect(os.networkInterfaces())) 
-console.log("programe end") 
+
